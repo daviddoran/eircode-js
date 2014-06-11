@@ -11,7 +11,7 @@ var result = Eircode.parse('A65R2GF');
 
 This will return a [ParseResult](src/parse-result.js) object.
 
-`ParseResult` can be used to check validity:
+With `ParseResult` you can check if the Eircode is valid and access its parts:
 
 ```javascript
 if (result.isValid()) {
@@ -20,7 +20,7 @@ if (result.isValid()) {
 }
 ```
 
-You can get a plain object containing all the parsed properties:
+You can get a plain object containing all the parsed properties using `toJSON`:
 
 ```javascript
 console.log(result.toJSON());
@@ -83,7 +83,8 @@ Note that a valid Eircode may be unused in real life, may have been discontinued
 without any dwellings, etc. Checking if an Eircode is deliverable is different to checking if it is valid.
 
 The **canonical** version of an Eircode has letters uppercased and spaces and non-valid characters removed.
-For example, `A65R2GF` is the canonical version of both `a65 r2gf` and `A-65-R2GF`.
+For example, `A65R2GF` is the canonical version of both `a65 r2gf` and `A-65-R2GF`. The `ParseResult` properties `routingKey`,
+`uniqueIdentifier` and `eircode` will always contain either the canonical version or an empty string (if invalid).
 
 ## References
 
