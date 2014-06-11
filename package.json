@@ -1,0 +1,22 @@
+{
+  "name": "eircode-js",
+  "version": "0.0.1",
+  "description": "A JavaScript library for working with Eircodes",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/tape test/*"
+  },
+  "keywords": [
+    "eircode",
+    "postcode",
+    "validation"
+  ],
+  "author": "David Doran <david@daviddoran.com>",git
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "~2.13.2"
+  }
+}
