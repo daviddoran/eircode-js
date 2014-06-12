@@ -9,15 +9,13 @@ function Parser(options) {
     this._log = options.log || false;
 }
 
-var disallowedLetters = 'iomnIOMN',
-    allowedLetters = [
+var allowedLetters = [
         'abcdefgh', 'jkl', 'pqrstuvwxyz',
         'ABCDEFGH', 'JKL', 'PQRSTUVWXYZ'
     ].join(''),
-    disallowedNumbers = '01',
     allowedNumbers = '23456789',
     allowedChars = [allowedLetters, allowedNumbers].join(''),
-    disallowedChars = [disallowedLetters, disallowedNumbers].join(''),
+    disallowedChars = ['iomnIOMN', '01'].join(''),
     punctuationChars = ' -/';
 
 /**
