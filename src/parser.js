@@ -12,7 +12,7 @@ function Parser(options) {
 var disallowedLetters = 'iomnIOMN',
     allowedLetters = [
         'abcdefgh', 'jkl', 'pqrstuvwxyz',
-        'ABCDEFGH', 'JKL', 'PGRSTUVWXYZ'
+        'ABCDEFGH', 'JKL', 'PQRSTUVWXYZ'
     ].join(''),
     disallowedNumbers = '01',
     allowedNumbers = '23456789',
