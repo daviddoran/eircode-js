@@ -32,6 +32,14 @@ test('empty eircodes are invalid', function (t) {
     t.end();
 });
 
+test('punctuation-only eircodes are invalid', function (t) {
+    var result = parse('       ').toJSON();
+    routingKeyInvalid(t, result);
+    uniqueIdentifierInvalid(t, result);
+
+    t.end();
+});
+
 test('eircodes must be 7 characters long', function (t) {
     //Six characters is too few
     var result = parse('A65R2G').toJSON();
