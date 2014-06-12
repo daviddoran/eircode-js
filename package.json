@@ -14,7 +14,7 @@
     "postcode",
     "validation"
   ],
-  "author": "David Doran <david@daviddoran.com>",git
+  "author": "David Doran <david@daviddoran.com>",
   "license": "MIT",
   "devDependencies": {
     "tape": "~2.13.2"
