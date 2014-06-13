@@ -33,8 +33,8 @@ This will output something like:
     hasEircode: true,
     eircode: 'A65R2GF',
     hasRoutingKey: true,
-    hasUniqueIdentifier: true,
     routingKey: 'A65',
+    hasUniqueIdentifier: true,
     uniqueIdentifier: 'R2GF',
     errors: [],
     logs: []
