@@ -1,6 +1,6 @@
 # EircodeJS
 
-EircodeJS is a JavaScript library for parsing and validating Eircodes (Irish postcodes).
+EircodeJS is a JavaScript library for parsing and validating [Eircodes](http://eircode.ie/) (Irish postcodes).
 
 EircodeJS has the following goals:
 
