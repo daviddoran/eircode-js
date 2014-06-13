@@ -17,7 +17,8 @@ var disallowedLetters = 'iomnIOMN',
     disallowedNumbers = '01',
     allowedNumbers = '23456789',
     allowedChars = [allowedLetters, allowedNumbers].join(''),
-    disallowedChars = [disallowedLetters, disallowedNumbers].join(''),
+    allLetters = allowedLetters.concat(disallowedLetters),
+    allNumbers = allowedNumbers.concat(disallowedNumbers),
     punctuationChars = ' -/';
 
 /**
@@ -41,20 +42,17 @@ Parser.prototype.parse = function (input) {
     for (var i = 0, p = 0; i < input.length; i++) {
         var c = input[i];
 
-        if (disallowedChars.indexOf(c) !== -1) {
-            return error(['The characters', disallowedChars, 'are not allowed in Eircodes'].join(' '));
-        }
         if (punctuationChars.indexOf(c) !== -1) {
             this._log && data.logs.push('Skipping punctuation character "' + c + '"');
             continue;
         }
         if (p === 0) {
-            if (allowedLetters.indexOf(c) === -1) {
+            if (allLetters.indexOf(c) === -1) {
                 return error('Routing Key must begin with a letter');
             }
             routingKey.push(c);
         } else if (p === 1 || p === 2) {
-            if (allowedNumbers.indexOf(c) === -1) {
+            if (allNumbers.indexOf(c) === -1) {
                 if (!(p === 2 && routingKey[1] === '6' && (c === 'w' || c === 'W'))) {
                     return error('Routing Key must contain two numbers');
                 }

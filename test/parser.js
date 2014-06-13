@@ -56,13 +56,19 @@ test('eircodes must be 7 characters long', function (t) {
 
 test('eircodes must begin with a letter', function (t) {
     //'1' is not a valid letter
-    var result = parse('365R2GF').toJSON();
+    var result = parse('365').toJSON();
     routingKeyInvalid(t, result);
     uniqueIdentifierInvalid(t, result);
 
     //'$' is not a valid letter
-    var result = parse('$65R2GF').toJSON();
+    var result = parse('$65').toJSON();
     routingKeyInvalid(t, result);
+    uniqueIdentifierInvalid(t, result);
+
+    //'H' is a valid letter
+    var result = parse('H65').toJSON();
+    t.true(result.hasRoutingKey);
+    t.equal(result.routingKey, 'H65');
     uniqueIdentifierInvalid(t, result);
 
     t.end();
@@ -88,6 +94,27 @@ test('eircode routing keys must end with two numbers', function (t) {
     t.true(result.hasUniqueIdentifier);
     t.equal(result.routingKey, 'D6W');
     t.equal(result.uniqueIdentifier, 'R2GF');
+
+    t.end();
+});
+
+test('eircode routing key can contain any letter or number', function (t) {
+    var routingKeys = [
+        'D01', 'D15', 'D6W',
+        'O11', 'M01', 'N10'
+    ];
+
+    for (var rk, i = 0; rk = routingKeys[i]; i++) {
+        var result = parse(rk).toJSON();
+        t.true(result.hasRoutingKey);
+        t.false(result.hasUniqueIdentifier);
+        t.equal(result.routingKey, rk);
+    }
+
+    //Routing Key still cannot non-letter or non-number characters
+    var result = parse('D1*').toJSON();
+    t.false(result.hasRoutingKey);
+    t.false(result.hasUniqueIdentifier);
 
     t.end();
 });
