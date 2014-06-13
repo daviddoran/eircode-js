@@ -10,7 +10,7 @@ function ParseResult(data) {
     this._uniqueIdentifier = (data.hasOwnProperty('uniqueIdentifier') ? data.uniqueIdentifier : '');
 }
 
-ParseResult.prototype.isValid = function () {
+ParseResult.prototype.hasEircode = function () {
     return this.hasRoutingKey() && this.hasUniqueIdentifier();
 };
 
@@ -47,7 +47,7 @@ ParseResult.prototype.logs = function () {
 
 ParseResult.prototype.toJSON = function () {
     return {
-        isValid: this.isValid(),
+        hasEircode: this.hasEircode(),
         errors: this._errors,
         logs: this._logs,
         eircode: this.eircode(),

@@ -14,7 +14,7 @@ This will return a [ParseResult](src/parse-result.js) object.
 With `ParseResult` you can check if the Eircode is valid and access its parts:
 
 ```javascript
-if (result.isValid()) {
+if (result.hasEircode()) {
     console.log('Routing Key = ', result.routingKey());
     console.log('Unique Identifier = ', result.uniqueIdentifier());
 }
@@ -30,7 +30,7 @@ This will output something like:
 
 ```javascript
 {
-    isValid: true,
+    hasEircode: true,
     eircode: 'A65R2GF',
     hasRoutingKey: true,
     hasUniqueIdentifier: true,
@@ -45,11 +45,11 @@ The properties on the object (and the matching methods on `ParseResult`) are:
 
 | Name | Type | Description |
 | ---  | ---  | ----------- |
-| `isValid` | bool | Whether the input was a complete and valid Eircode. |
-| `eircode` | string | The complete Eircode in **canonical form** if `isValid` is true. An empty string otherwise. |
+| `hasEircode` | bool | Whether the input was a complete and valid Eircode. |
+| `eircode` | string | The complete Eircode in **canonical form** if `hasEircode` is true. An empty string otherwise. |
 | `hasRoutingKey` | bool | Whether the input had a valid Routing Key. |
-| `hasUniqueIdentifier` | bool | Whether the input had a valid Unique Identifier. Will be true iff `isValid` is true. |
 | `routingKey` | string | The Routing Key in **canonical form** if `hasRoutingKey` is true. An empty string otherwise. |
+| `hasUniqueIdentifier` | bool | Whether the input had a valid Unique Identifier. Will be true iff `hasEircode` is true. |
 | `uniqueIdentifier` | string | The Unique Identifier in **canonical form** if `hasUniqueIdentifier` is true. An empty string otherwise. |
 
 ## Eircode Specification

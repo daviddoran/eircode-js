@@ -4,14 +4,14 @@ var Parser = require('../src/parser');
 var parse = new Parser().parse;
 
 function routingKeyInvalid(t, parseResult) {
-    t.false(parseResult.isValid);
+    t.false(parseResult.hasEircode);
     t.false(parseResult.hasRoutingKey);
     t.equal(parseResult.routingKey, '');
     t.false(parseResult.hasUniqueIdentifier);
 }
 
 function uniqueIdentifierInvalid(t, parseResult) {
-    t.false(parseResult.isValid);
+    t.false(parseResult.hasEircode);
     t.false(parseResult.hasUniqueIdentifier);
     t.equal(parseResult.uniqueIdentifier, '');
 }
@@ -89,7 +89,7 @@ test('eircode routing keys must end with two numbers', function (t) {
 
     //The only exception is D6W which is valid
     var result = parse('D6WR2GF').toJSON();
-    t.true(result.isValid);
+    t.true(result.hasEircode);
     t.true(result.hasRoutingKey);
     t.true(result.hasUniqueIdentifier);
     t.equal(result.routingKey, 'D6W');
