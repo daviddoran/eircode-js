@@ -82,9 +82,9 @@ A **valid** Eircode, Routing Key or Unique Identifier follows the patterns laid 
 Note that a valid Eircode may be unused in real life, may have been discontinued, may map to a geographic area
 without any dwellings, etc. Checking if an Eircode is deliverable is different to checking if it is valid.
 
-The **canonical** version of an Eircode has letters uppercased and spaces and non-valid characters removed.
-For example, `A65R2GF` is the canonical version of both `a65 r2gf` and `A-65-R2GF`. The `ParseResult` properties `routingKey`,
-`uniqueIdentifier` and `eircode` will always contain either the canonical version or an empty string (if invalid).
+The **canonical** form of an Eircode has letters uppercased and spaces and non-valid characters removed.
+For example, `A65R2GF` is the canonical form of both `a65 r2gf` and `A-65-R2GF`. The `ParseResult` properties `routingKey`,
+`uniqueIdentifier` and `eircode` will always contain either the canonical form or an empty string (if invalid).
 
 ## References
 
