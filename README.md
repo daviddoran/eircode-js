@@ -20,8 +20,8 @@ EircodeJS has the following goals:
 Using the static `Eircode.parse` method we can parse some input:
 
 ```javascript
-var Eircode = require('eircode-js');
-var result = Eircode.parse('A65R2GF');
+var EircodeJS = require('eircode-js');
+var result = EircodeJS.parse('A65R2GF');
 ```
 
 This will return a [ParseResult](src/parse-result.js) object.

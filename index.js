@@ -1,6 +1,6 @@
 var Parser = require('./src/parser');
 
-function Eircode() {
+function EircodeJS() {
 }
 
 /**
@@ -8,8 +8,8 @@ function Eircode() {
  * @param {object} options
  * @returns {ParseResult}
  */
-Eircode.parse = function (input, options) {
+EircodeJS.parse = function (input, options) {
     return new Parser(options).parse(input);
 };
 
-module.exports = Eircode;
+module.exports = EircodeJS;
