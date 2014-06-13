@@ -56,23 +56,23 @@ In this example:
 
 The Routing Key:
 
-- Begins with a valid letter
-- Followed by two valid numbers
+- Begins with a letter
+- Followed by two numbers
 
 The only exception is 'D6W' which is a valid Routing Key.
 
 The Unique Identifier:
 
-- Contains four valid characters
+- Contains four safe characters
 
-A valid character is either a valid letter or a valid number.
+A safe character is either a safe letter or a safe number.
 
-A valid letter is an alphabetic character, excluding:
+A safe letter is an alphabetic character, excluding:
 
 - `O` and `I`
 - `M` and `N`
 
-A valid number is a numeric digit, excluding:
+A safe number is a numeric digit, excluding:
 
 - `0` and `1`
 
