@@ -26,17 +26,29 @@ var disallowedLetters = 'iomnIOMN',
  * @returns {ParseResult}
  */
 Parser.prototype.parse = function (input) {
-    var data = {logs: [], errors: []},
+    var data = {logs: [], error: null},
         routingKey = [],
         uniqueIdentifier = [];
 
-    var error = function (error) {
-        data.errors.push(error);
+    /**
+     * @param {string} message
+     * @param {int} inputPos
+     * @param {int} outputPos
+     * @returns {ParseResult}
+     */
+    var error = function (message, inputPos, outputPos) {
+        inputPos = (typeof inputPos === 'undefined' ? -1 : inputPos);
+        outputPos = (typeof outputPos === 'undefined' ? -1 : outputPos);
+        data.error = {
+            message: message,
+            inputPos: inputPos,
+            outputPos: outputPos
+        };
         return new ParseResult(data);
     };
 
     if (!(typeof input === 'string' || input instanceof String)) {
-        return error('Eircode must be a string');
+        return error('Eircode must be a string', -1, -1);
     }
 
     for (var i = 0, p = 0; i < input.length; i++) {
@@ -48,19 +60,19 @@ Parser.prototype.parse = function (input) {
         }
         if (p === 0) {
             if (allLetters.indexOf(c) === -1) {
-                return error('Routing Key must begin with a letter');
+                return error('Routing Key must begin with a letter', i, p);
             }
             routingKey.push(c);
         } else if (p === 1 || p === 2) {
             if (allNumbers.indexOf(c) === -1) {
                 if (!(p === 2 && routingKey[1] === '6' && (c === 'w' || c === 'W'))) {
-                    return error('Routing Key must contain two numbers');
+                    return error('Routing Key must contain two numbers', i, p);
                 }
             }
             routingKey.push(c);
         } else {
             if (allowedChars.indexOf(c) === -1) {
-                data.errors.push('Unique Identifier cannot contain "' + c + '"');
+                return error('Unique Identifier cannot contain "' + c + '"', i, p);
             } else {
                 uniqueIdentifier.push(c);
             }
@@ -69,14 +81,18 @@ Parser.prototype.parse = function (input) {
     }
 
     if (routingKey.length !== 0 && routingKey.length !== 3) {
-        return error('Routing Key must be three characters long');
+        return error('Routing Key must be three characters long', input.length, routingKey.length);
     } else {
         data.routingKey = routingKey.join('').toUpperCase();
     }
 
     if (uniqueIdentifier.length !== 0) {
         if (uniqueIdentifier.length !== 4) {
-            data.errors.push('Unique Identifier must be four characters long');
+            return error(
+                'Unique Identifier must be four characters long',
+                input.length,
+                routingKey.length + uniqueIdentifier.length
+            );
         } else {
             data.uniqueIdentifier = uniqueIdentifier.join('').toUpperCase();
         }

@@ -4,7 +4,7 @@
  */
 function ParseResult(data) {
     data = data || {};
-    this._errors = (data.hasOwnProperty('errors') ? data.errors : []);
+    this._error = (data.hasOwnProperty('error') ? data.error : null);
     this._logs = (data.hasOwnProperty('logs') ? data.logs : []);
     this._routingKey = (data.hasOwnProperty('routingKey') ? data.routingKey : '');
     this._uniqueIdentifier = (data.hasOwnProperty('uniqueIdentifier') ? data.uniqueIdentifier : '');
@@ -37,8 +37,8 @@ ParseResult.prototype.hasUniqueIdentifier = function () {
     return this._uniqueIdentifier !== '';
 };
 
-ParseResult.prototype.errors = function () {
-    return this._errors;
+ParseResult.prototype.error = function () {
+    return this._error;
 };
 
 ParseResult.prototype.logs = function () {
@@ -48,7 +48,7 @@ ParseResult.prototype.logs = function () {
 ParseResult.prototype.toJSON = function () {
     return {
         hasEircode: this.hasEircode(),
-        errors: this._errors,
+        error: this._error,
         logs: this._logs,
         eircode: this.eircode(),
         routingKey: this._routingKey,

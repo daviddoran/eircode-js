@@ -20,12 +20,12 @@ test('letters except [iomn] are allowed', function (t) {
     for (var c, i = 0; c = allowed[i]; i++) {
         var result = parse(['A25', c, '234'].join(''));
         t.true(result.hasEircode(), 'should be valid with lowercase ' + c);
-        t.deepEqual(result.errors(), [], 'should have no errors with lowercase ' + c);
+        t.equal(result.error(), null, 'should have no error with lowercase ' + c);
 
         c = c.toUpperCase();
         var result = parse(['A25', c, '234'].join(''));
         t.true(result.hasEircode(), 'should be valid with uppercase ' + c);
-        t.deepEqual(result.errors(), [], 'should have no errors with uppercase ' + c);
+        t.equal(result.error(), null, 'should have no error with uppercase ' + c);
     }
 
     t.end();
@@ -39,12 +39,12 @@ test('letters [iomn] are disallowed', function (t) {
     for (var c, i = 0; c = disallowed[i]; i++) {
         var result = parse(['A25', c, '234'].join(''));
         t.false(result.hasEircode(), 'should be invalid with lowercase ' + c);
-        t.notDeepEqual(result.errors(), [], 'should have errors with lowercase ' + c);
+        t.notEqual(result.error(), null, 'should have error with lowercase ' + c);
 
         c = c.toUpperCase();
         var result = parse(['A25', c, '234'].join(''));
         t.false(result.hasEircode(), 'should be invalid with uppercase ' + c);
-        t.notDeepEqual(result.errors(), [], 'should have errors with uppercase ' + c);
+        t.notEqual(result.error(), null, 'should have error with uppercase ' + c);
     }
 
     t.end();

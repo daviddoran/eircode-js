@@ -51,7 +51,7 @@ This will output something like:
     routingKey: 'A65',
     hasUniqueIdentifier: true,
     uniqueIdentifier: 'R2GF',
-    errors: [],
+    error: null,
     logs: []
 }
 ```
@@ -66,6 +66,27 @@ The properties on the object (and the matching methods on `ParseResult`) are:
 | `routingKey` | string | The Routing Key in **canonical form** if `hasRoutingKey` is true. An empty string otherwise. |
 | `hasUniqueIdentifier` | bool | Whether the input had a valid Unique Identifier. Will be true iff `hasEircode` is true. |
 | `uniqueIdentifier` | string | The Unique Identifier in **canonical form** if `hasUniqueIdentifier` is true. An empty string otherwise. |
+| `error` | object / null | If the Eircode could not be parsed then an object containing the error details. null otherwise. |
+
+An example `error` object is the following:
+
+```javascript
+{
+    message: "Unique Identifier cannot contain \"!\"",
+    inputPos: 5,
+    outputPos: 4
+}
+```
+
+In this example `inputPos` differs from `outputPos` because a whitespace character in the input was skipped over.
+
+The error object contains the following properties:
+
+| Name | Type | Description |
+| ---  | ---  | ----------- |
+| `message` | string | A human readable message describing the error. |
+| `inputPos` | int | The position in the input string where the error occurred. Or -1 if there is no applicable position. `inputPos` will equal the length of the input string if more input was expected. |
+| `outputPos` | int | The position in the output string (the canonical form) where the error occurred. Or -1 if there is no applicable position. Will never be greater than six. |
 
 ## Eircode Specification
 
