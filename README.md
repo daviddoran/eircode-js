@@ -31,15 +31,26 @@ This will output something like:
 ```javascript
 {
     isValid: true,
-    errors: [],
-    logs: [],
     eircode: 'A65R2GF',
+    hasRoutingKey: true,
+    hasUniqueIdentifier: true,
     routingKey: 'A65',
     uniqueIdentifier: 'R2GF',
-    hasRoutingKey: true,
-    hasUniqueIdentifier: true
+    errors: [],
+    logs: []
 }
 ```
+
+The properties on the object (and the matching methods on `ParseResult`) are:
+
+| Name | Type | Description |
+| ---  | ---  | ----------- |
+| `isValid` | bool | Whether the input was a complete and valid Eircode. |
+| `eircode` | string | The complete Eircode in **canonical form** if `isValid` is true. An empty string otherwise. |
+| `hasRoutingKey` | bool | Whether the input had a valid Routing Key. |
+| `hasUniqueIdentifier` | bool | Whether the input had a valid Unique Identifier. Will be true iff `isValid` is true. |
+| `routingKey` | string | The Routing Key in **canonical form** if `hasRoutingKey` is true. An empty string otherwise. |
+| `uniqueIdentifier` | string | The Unique Identifier in **canonical form** if `hasUniqueIdentifier` is true. An empty string otherwise. |
 
 ## Eircode Specification
 
