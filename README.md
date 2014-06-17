@@ -1,4 +1,4 @@
-# EircodeJS
+# EircodeJS [![Build Status](https://api.travis-ci.org/daviddoran/eircode-js.png)](https://travis-ci.org/daviddoran/eircode-js)
 
 EircodeJS is a JavaScript library for parsing and validating [Eircodes](http://eircode.ie/) (Irish postcodes).
 
