@@ -90,8 +90,8 @@ Parser.prototype.parse = function (input) {
         if (uniqueIdentifier.length !== 4) {
             return error(
                 'Unique Identifier must be four characters long',
-                input.length,
-                routingKey.length + uniqueIdentifier.length
+                input.length - 1,
+                routingKey.length + uniqueIdentifier.length - 1
             );
         } else {
             data.uniqueIdentifier = uniqueIdentifier.join('').toUpperCase();
