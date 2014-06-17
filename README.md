@@ -72,7 +72,7 @@ An example `error` object is the following:
 
 ```javascript
 {
-    message: "Unique Identifier cannot contain \"!\"",
+    message: 'Unique Identifier cannot contain "!"',
     inputPos: 5,
     outputPos: 4
 }
