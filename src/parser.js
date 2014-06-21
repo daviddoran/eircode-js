@@ -70,6 +70,9 @@ Parser.prototype.parse = function (input) {
                 }
             }
             routingKey.push(c);
+            if (p === 2) {
+                data.routingKey = routingKey.join('').toUpperCase();
+            }
         } else {
             if (allowedChars.indexOf(c) === -1) {
                 return error('Unique Identifier cannot contain "' + c + '"', i, p);
@@ -82,8 +85,6 @@ Parser.prototype.parse = function (input) {
 
     if (routingKey.length !== 0 && routingKey.length !== 3) {
         return error('Routing Key must be three characters long', input.length, routingKey.length);
-    } else {
-        data.routingKey = routingKey.join('').toUpperCase();
     }
 
     if (uniqueIdentifier.length !== 0) {

@@ -98,6 +98,15 @@ test('eircode routing keys must end with two numbers', function (t) {
     t.end();
 });
 
+test('the parser returns the routing key even if the rest is invalid', function (t) {
+    var result = parse('A65?2GF').toJSON();
+    t.true(result.hasRoutingKey);
+    t.equal(result.routingKey, 'A65');
+    uniqueIdentifierInvalid(t, result);
+
+    t.end();
+});
+
 test('eircode routing key can contain any letter or number', function (t) {
     var routingKeys = [
         'D01', 'D15', 'D6W',
