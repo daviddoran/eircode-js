@@ -83,20 +83,18 @@ Parser.prototype.parse = function (input) {
         p += 1;
     }
 
-    if (routingKey.length !== 0 && routingKey.length !== 3) {
+    if (routingKey.length !== 3) {
         return error('Routing Key must be three characters long', input.length, routingKey.length);
     }
 
-    if (uniqueIdentifier.length !== 0) {
-        if (uniqueIdentifier.length !== 4) {
-            return error(
-                'Unique Identifier must be four characters long',
-                input.length - 1,
-                routingKey.length + uniqueIdentifier.length - 1
-            );
-        } else {
-            data.uniqueIdentifier = uniqueIdentifier.join('').toUpperCase();
-        }
+    if (uniqueIdentifier.length !== 4) {
+        return error(
+            'Unique Identifier must be four characters long',
+            input.length - 1,
+            routingKey.length + uniqueIdentifier.length - 1
+        );
+    } else {
+        data.uniqueIdentifier = uniqueIdentifier.join('').toUpperCase();
     }
 
     return new ParseResult(data);
