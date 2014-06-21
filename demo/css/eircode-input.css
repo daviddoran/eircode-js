@@ -1,0 +1,75 @@
+.eircode-input-section {
+	margin-bottom: 20px;
+}
+
+.eircode-input-label {
+	background-color: #CBEEFB;
+	color: #016699;
+	font-weight: bold;
+	padding: 7px;
+	display: block;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-color: #73AABF;
+	border-style: solid;
+	border-width: 1px 1px 0 1px;
+}
+
+.eircode-input-label p {
+	margin: 0;
+	padding: 7px 0;
+	font-weight: normal;
+}
+
+.eircode-input {
+	position: relative;
+	z-index: 1;
+}
+
+.eircode-input-overlay {
+	background: transparent;
+	position: relative;
+}
+
+.eircode-input,
+.eircode-input input,
+.eircode-input-underlay,
+.eircode-input-overlay {
+	font-family: 'Helvetica Neue', Helvetica, sans;
+	font-size: 60pt;
+	font-weight: normal;
+	line-height: 1.5;
+	text-align: center;
+}
+
+.eircode-input input,
+.eircode-input-overlay {
+	padding: 0 7px;
+	margin: 0;
+	border: 2px transparent solid;
+	width: 100%;
+}
+
+.eircode-input input {
+	background: transparent;
+	border-left: 1px #BFBFBF solid;
+	border-right: 1px #BFBFBF solid;
+	z-index: 1;
+	text-align: center;
+}
+
+.eircode-input-overlay {
+	position: absolute;
+	z-index: -1;
+	color: transparent;
+	background: white;
+	white-space: pre-wrap;
+}
+
+.eircode-overlay-text-valid {
+	background-color: transparent;
+}
+
+.eircode-overlay-text-invalid {
+	background-color: #FECBCB;
+}

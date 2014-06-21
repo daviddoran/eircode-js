@@ -1,0 +1,27 @@
+.eircode-error,
+.eircode-valid {
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
+}
+
+.eircode-error {
+	font-size: 18pt;
+	font-weight: bold;
+	color: #8B0006;
+	background-color: #fcc;
+	border-color: #BF7374;
+	text-align: center;
+	padding: 0.3em 0.3em;
+}
+
+.eircode-valid {
+	font-size: 18pt;
+	font-weight: bold;
+	color: #198B00;
+	background-color: #cfc;
+	border-color: #73BF73;
+	text-align: center;
+	padding: 0.3em 0.3em;
+}

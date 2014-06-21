@@ -1,0 +1,30 @@
+{
+  "name": "eircode-js-site",
+  "version": "0.0.1",
+  "description": "The EircodeJS website and demo.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/daviddoran/eircode-js.git"
+  },
+  "keywords": [
+    "eircode",
+    "eircodejs",
+    "postcodes"
+  ],
+  "author": "David Doran <david@daviddoran.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daviddoran/eircode-js/issues"
+  },
+  "devDependencies": {
+    "reactify": "~0.13.1",
+    "browserify": "~4.1.10",
+    "envify": "~1.2.1",
+    "react": "~0.10.0",
+    "eircode-js": "0.0.1"
+  }
+}

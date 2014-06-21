@@ -1,0 +1,14 @@
+.example {
+	text-decoration: underline;
+}
+
+.example:hover {
+	color: black;
+	cursor: pointer;
+}
+
+.example.active {
+	color: #445;
+	text-decoration: none;
+	cursor: auto;
+}
