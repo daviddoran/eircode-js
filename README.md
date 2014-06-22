@@ -86,7 +86,7 @@ The error object contains the following properties:
 | ---  | ---  | ----------- |
 | `message` | string | A human readable message describing the error. |
 | `inputPos` | int | The position in the input string where the error occurred. Or -1 if there is no applicable position. `inputPos` will equal the length of the input string if more input was expected. |
-| `outputPos` | int | The position in the output string (the canonical form) where the error occurred. Or -1 if there is no applicable position. Will never be greater than six. |
+| `outputPos` | int | The position in the output string (the canonical form) where the error occurred. Or -1 if there is no applicable position. Will never be greater than seven. |
 
 ## Eircode Specification
 
