@@ -1,6 +1,8 @@
 var test = require('tape');
 var Parser = require('../src/parser');
-var parse = new Parser().parse;
+
+var parser = new Parser();
+var parse = parser.parse.bind(parser);
 
 test('first letter error has outputPos 0', function (t) {
     var error = parse('').error();

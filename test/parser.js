@@ -1,7 +1,8 @@
 var test = require('tape');
 var Parser = require('../src/parser');
 
-var parse = new Parser().parse;
+var parser = new Parser();
+var parse = parser.parse.bind(parser);
 
 function routingKeyInvalid(t, parseResult) {
     t.false(parseResult.hasEircode);

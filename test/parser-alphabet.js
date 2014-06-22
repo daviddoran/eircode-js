@@ -8,7 +8,8 @@ var Parser = require('../src/parser');
  * These tests detect typos and prevent regressions.
  */
 
-var parse = new Parser().parse;
+var parser = new Parser();
+var parse = parser.parse.bind(parser);
 
 test('letters except [iomn] are allowed', function (t) {
     var allowed = [
