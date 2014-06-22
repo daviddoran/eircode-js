@@ -26,7 +26,7 @@ var EircodeInput = React.createClass({
 				errorInputPos = error ? error.inputPos : -1;
 
 		var annotations = [];
-		for (var i = 0; i < Math.max(value.length, errorInputPos); i++) {
+		for (var i = 0; i < Math.max(value.length, errorInputPos + 1); i++) {
 			var c = (value.length > i) ? value[i] : 'N';
 			if (error && error.inputPos === i) {
 				annotations.push(

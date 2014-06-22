@@ -39,7 +39,7 @@
 	font-size: 60pt;
 	font-weight: normal;
 	line-height: 1.5;
-	text-align: center;
+	text-align: left;
 }
 
 .eircode-input input,
@@ -55,7 +55,6 @@
 	border-left: 1px #BFBFBF solid;
 	border-right: 1px #BFBFBF solid;
 	z-index: 1;
-	text-align: center;
 }
 
 .eircode-input-overlay {
