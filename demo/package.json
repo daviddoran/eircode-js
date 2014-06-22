@@ -4,7 +4,8 @@
   "description": "The EircodeJS website and demo.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/browserify --bare --standalone EircodeJSDemo -t reactify src/index.js -o build/index.js"
   },
   "repository": {
     "type": "git",
