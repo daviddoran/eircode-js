@@ -197,7 +197,7 @@ Parser.prototype.parse = function (input) {
         return error('Eircode must be a string', -1, -1);
     }
 
-    for (var i = 0, p = 0; i < input.length; i++) {
+    for (var i = 0, p = 0; i < input.length && p < 7; i++) {
         var c = input[i];
 
         if (punctuationChars.indexOf(c) !== -1) {
@@ -233,12 +233,8 @@ Parser.prototype.parse = function (input) {
         return error('Routing Key must be three characters long', input.length, routingKey.length);
     }
 
-    if (uniqueIdentifier.length !== 4) {
-        return error(
-            'Unique Identifier must be four characters long',
-            input.length - 1,
-            routingKey.length + uniqueIdentifier.length - 1
-        );
+    if (uniqueIdentifier.length !== 4 || i !== input.length) {
+        return error('Unique Identifier must be four characters long', i, p);
     } else {
         data.uniqueIdentifier = uniqueIdentifier.join('').toUpperCase();
     }
