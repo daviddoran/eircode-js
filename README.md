@@ -149,3 +149,9 @@ For example, `A65R2GF` is the canonical form of both `a65 r2gf` and `A-65-R2GF`.
 ## References
 
 [http://www.fretwell.ie/images/Eircode.pdf](http://www.fretwell.ie/images/Eircode.pdf)
+
+## License
+
+This project is released under the MIT License.
+
+Attribution is appreciated but not required.
