@@ -1,6 +1,6 @@
 {
   "name": "eircode-js",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A JavaScript library for working with Eircodes",
   "main": "index.js",
   "directories": {

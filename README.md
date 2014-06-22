@@ -88,6 +88,19 @@ The error object contains the following properties:
 | `inputPos` | int | The position in the input string where the error occurred. Or -1 if there is no applicable position. `inputPos` will equal the length of the input string if more input was expected. |
 | `outputPos` | int | The position in the output string (the canonical form) where the error occurred. Or -1 if there is no applicable position. Will never be greater than seven. |
 
+## Browser Support
+
+EircodeJS should work in all environments with a decent JavaScript runtime.
+
+An issue in the following browsers is considered a bug in EircodeJS:
+
+- The last two versions of Chrome, Firefox, Safari and Opera
+- The mobile browsers in [jQuery Mobile's A-grade list](http://jquerymobile.com/gbs/1.3/)
+- Internet Explorer 6 and later
+
+Note that these guarantees don't apply to secondary resources such as the demo site,
+examples or integrations with other validation libraries.
+
 ## Eircode Specification
 
 I have compiled the following unofficial Eircode specification based on the information that's been released to date (see [References](#References)).
