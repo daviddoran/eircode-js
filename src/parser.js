@@ -1,3 +1,5 @@
+'use strict';
+
 var ParseResult = require('./parse-result');
 
 /**
@@ -26,7 +28,8 @@ var disallowedLetters = 'iomnIOMN',
  * @returns {ParseResult}
  */
 Parser.prototype.parse = function (input) {
-    var data = {logs: [], error: null},
+    var self = this,
+        data = {logs: [], error: null},
         routingKey = [],
         uniqueIdentifier = [];
 
@@ -47,6 +50,12 @@ Parser.prototype.parse = function (input) {
         return new ParseResult(data);
     };
 
+    var log = function (message) {
+        if (self._log) {
+            data.logs.push(message);
+        }
+    };
+
     if (!(typeof input === 'string' || input instanceof String)) {
         return error('Eircode must be a string', -1, -1);
     }
@@ -55,7 +64,7 @@ Parser.prototype.parse = function (input) {
         var c = input[i];
 
         if (punctuationChars.indexOf(c) !== -1) {
-            this._log && data.logs.push('Skipping punctuation character "' + c + '"');
+            log('Skipping punctuation character "' + c + '"');
             continue;
         }
         if (p === 0) {
