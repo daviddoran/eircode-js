@@ -11,11 +11,11 @@ var Parser = require('../src/parser');
 var parser = new Parser();
 var parse = parser.parse.bind(parser);
 
-test('letters except [iomn] are allowed', function (t) {
+test('only certain letters are allowed', function (t) {
     var allowed = [
-        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', /*i*/ 'j',
-        'k', 'l', /*m*/ /*n*/ /*o*/ 'p', 'q', 'r', 's', 't',
-        'u', 'v', 'w', 'x', 'y', 'z'
+        'a', /*b*/ 'c', 'd', 'e', 'f', /*g*/ 'h', /*i*/ /*j*/
+        'k', /*l*/ /*m*/ /*n*/ /*o*/ 'p', /*q*/ 'r', /*s*/ 't',
+        /*u*/ 'v', 'w', 'x', 'y' /*z*/
     ];
 
     for (var c, i = 0; c = allowed[i]; i++) {
@@ -32,9 +32,9 @@ test('letters except [iomn] are allowed', function (t) {
     t.end();
 });
 
-test('letters [iomn] are disallowed', function (t) {
+test('certain letters are disallowed', function (t) {
     var disallowed = [
-        'i', 'm', 'n', 'o'
+        'b', 'g', 'i', 'j', 'l', 'm', 'o', 'q', 's', 'u', 'z'
     ];
 
     for (var c, i = 0; c = disallowed[i]; i++) {

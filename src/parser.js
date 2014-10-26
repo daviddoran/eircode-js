@@ -11,13 +11,16 @@ function Parser(options) {
     this._log = options.log || false;
 }
 
-var disallowedLetters = 'iomnIOMN',
-    allowedLetters = [
-        'abcdefgh', 'jkl', 'pqrstuvwxyz',
-        'ABCDEFGH', 'JKL', 'PQRSTUVWXYZ'
+var disallowedLetters = [
+        'bgijlmoqsuz',
+        'BGIJLMOQSUZ'
     ].join(''),
-    disallowedNumbers = '01',
-    allowedNumbers = '23456789',
+    allowedLetters = [
+        'acdefhknprtvwxy',
+        'ACDEFHKNPRTVWXY'
+    ].join(''),
+    disallowedNumbers = '',
+    allowedNumbers = '0123456789',
     allowedChars = [allowedLetters, allowedNumbers].join(''),
     allLetters = allowedLetters.concat(disallowedLetters),
     allNumbers = allowedNumbers.concat(disallowedNumbers),

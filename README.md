@@ -21,7 +21,7 @@ Using the static `Eircode.parse` method we can parse some input:
 
 ```javascript
 var EircodeJS = require('eircode-js');
-var result = EircodeJS.parse('A65R2GF');
+var result = EircodeJS.parse('A65F4E2');
 ```
 
 This will return a [ParseResult](src/parse-result.js) object.
@@ -46,11 +46,11 @@ This will output something like:
 ```javascript
 {
     hasEircode: true,
-    eircode: 'A65R2GF',
+    eircode: 'A65F4E2',
     hasRoutingKey: true,
     routingKey: 'A65',
     hasUniqueIdentifier: true,
-    uniqueIdentifier: 'R2GF',
+    uniqueIdentifier: 'F4E2',
     error: null,
     logs: []
 }
@@ -107,34 +107,31 @@ I have compiled the following unofficial Eircode specification based on the info
 
 An example of a valid Eircode is:
 
-- `A65R2GF`
+- `A65F4E2`
 
 In this example:
 
 - `A65` is the Routing Key
-- `R2GF` is the Unique Identifier
+- `F4E2` is the Unique Identifier
 
 The Routing Key:
 
-- Begins with a letter
-- Followed by two numbers
+- Begins with an allowed letter
+- Followed by two digits
 
 The only exception is 'D6W' which is a valid Routing Key.
 
 The Unique Identifier:
 
-- Contains four safe characters
+- Contains four allowed characters
 
-A safe character is either a safe letter or a safe number.
+An allowed character is either an allowed letter or a digit.
 
-A safe letter is an alphabetic character, excluding:
+An allowed letter is an alphabetic character, excluding:
 
-- `O` and `I`
-- `M` and `N`
+- `B`, `G`, `I`, `J`, `L`, `M`, `O`, `Q`, `S`, `U`, `Z`
 
-A safe number is a numeric digit, excluding:
-
-- `0` and `1`
+A digit is any of `0` to `9`.
 
 ## Terminology
 
@@ -143,12 +140,13 @@ Note that a valid Eircode may be unused in real life, may have been discontinued
 without any dwellings, etc. Checking if an Eircode is deliverable is different to checking if it is valid.
 
 The **canonical** form of an Eircode has letters uppercased and spaces and non-valid characters removed.
-For example, `A65R2GF` is the canonical form of both `a65 r2gf` and `A-65-R2GF`. The `ParseResult` properties `routingKey`,
+For example, `A65F4E2` is the canonical form of both `a65 F4E2` and `A-65-F4E2`. The `ParseResult` properties `routingKey`,
 `uniqueIdentifier` and `eircode` will always contain either the canonical form or an empty string (if invalid).
 
 ## References
 
-[http://www.fretwell.ie/images/Eircode.pdf](http://www.fretwell.ie/images/Eircode.pdf)
+- [Eircode is the name of Ireland’s new national postcode system](http://www.fretwell.ie/images/Eircode.pdf) (Fretwell.ie)
+- [Prepare your business for Eircode](http://www.eircode.ie/docs/default-source/default-document-library/prepare-your-business-for-eircode---published-v3.pdf?sfvrsn=0) (Eircode.ie)
 
 ## License
 

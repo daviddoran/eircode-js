@@ -90,12 +90,12 @@ test('uniqueIdentifier other chars have outputPos 4/5/6', function (t) {
     t.equal(error.inputPos, 5);
 
     //Missing fourth char
-    var error = parse('A65R2G').error();
+    var error = parse('A65F4E').error();
     t.equal(error.outputPos, 6);
     t.equal(error.inputPos, 6);
 
     //Invalid fourth char
-    var error = parse('A65R2G?').error();
+    var error = parse('A65F4E?').error();
     t.equal(error.outputPos, 6);
     t.equal(error.inputPos, 6);
 
@@ -104,22 +104,22 @@ test('uniqueIdentifier other chars have outputPos 4/5/6', function (t) {
 
 test('uniqueIdentifier has extra chars', function (t) {
     //One extra char
-    var error = parse('A65R2GF3').error();
+    var error = parse('A65F4E23').error();
     t.equal(error.outputPos, 7);
     t.equal(error.inputPos, 7);
 
     //One extra char (with whitespace)
-    var error = parse('A65-R2GF3').error();
+    var error = parse('A65-F4E23').error();
     t.equal(error.outputPos, 7);
     t.equal(error.inputPos, 8);
 
     //Two extra chars (error is still at first char)
-    var error = parse('A65R2GF33').error();
+    var error = parse('A65F4E233').error();
     t.equal(error.outputPos, 7);
     t.equal(error.inputPos, 7);
 
     //Two extra chars (with whitespace)
-    var error = parse('A65-R2GF33').error();
+    var error = parse('A65-F4E233').error();
     t.equal(error.outputPos, 7);
     t.equal(error.inputPos, 8);
 
