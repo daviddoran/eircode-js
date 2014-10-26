@@ -144,6 +144,8 @@ ParseResult.prototype.toJSON = function () {
 module.exports = ParseResult;
 
 },{}],4:[function(_dereq_,module,exports){
+'use strict';
+
 var ParseResult = _dereq_('./parse-result');
 
 /**
@@ -155,13 +157,16 @@ function Parser(options) {
     this._log = options.log || false;
 }
 
-var disallowedLetters = 'iomnIOMN',
-    allowedLetters = [
-        'abcdefgh', 'jkl', 'pqrstuvwxyz',
-        'ABCDEFGH', 'JKL', 'PQRSTUVWXYZ'
+var disallowedLetters = [
+        'bgijlmoqsuz',
+        'BGIJLMOQSUZ'
     ].join(''),
-    disallowedNumbers = '01',
-    allowedNumbers = '23456789',
+    allowedLetters = [
+        'acdefhknprtvwxy',
+        'ACDEFHKNPRTVWXY'
+    ].join(''),
+    disallowedNumbers = '',
+    allowedNumbers = '0123456789',
     allowedChars = [allowedLetters, allowedNumbers].join(''),
     allLetters = allowedLetters.concat(disallowedLetters),
     allNumbers = allowedNumbers.concat(disallowedNumbers),
@@ -172,7 +177,8 @@ var disallowedLetters = 'iomnIOMN',
  * @returns {ParseResult}
  */
 Parser.prototype.parse = function (input) {
-    var data = {logs: [], error: null},
+    var self = this,
+        data = {logs: [], error: null},
         routingKey = [],
         uniqueIdentifier = [];
 
@@ -193,6 +199,12 @@ Parser.prototype.parse = function (input) {
         return new ParseResult(data);
     };
 
+    var log = function (message) {
+        if (self._log) {
+            data.logs.push(message);
+        }
+    };
+
     if (!(typeof input === 'string' || input instanceof String)) {
         return error('Eircode must be a string', -1, -1);
     }
@@ -201,7 +213,7 @@ Parser.prototype.parse = function (input) {
         var c = input[i];
 
         if (punctuationChars.indexOf(c) !== -1) {
-            this._log && data.logs.push('Skipping punctuation character "' + c + '"');
+            log('Skipping punctuation character "' + c + '"');
             continue;
         }
         if (p === 0) {
@@ -19277,8 +19289,8 @@ var App = React.createClass({displayName: 'App',
 		var parseResult = EircodeJS.parse(this.state.inputValue);
 		var debug = JSON.stringify(parseResult.toJSON(), null, '  ');
 		var examples = [
-			'A65 R2GF',
-			'D6W U234',
+			'A65 F4E2',
+			'D6W V234',
 			'01D-5555',
 			'D6B-RTA2',
 			'A65-1234',
@@ -19287,26 +19299,26 @@ var App = React.createClass({displayName: 'App',
 		];
 		return (
 	 		React.DOM.div(null, 
-	 			React.DOM.div( {className:"eircode-input-section"}, 
-		 			React.DOM.div( {className:"eircode-input-label"}, 
-		 				"Type an Eircode or click one of the examples below:",
-		 				EircodeExamples(
-		 					{examples:examples,
-		 					onClick:this.onClickExample,
-		 					inputValue:this.state.inputValue} )
-		 			),
-		 			EircodeInput(
-		 				{value:this.state.inputValue,
-		 				'parse-result':parseResult,
-		 				onChange:this.onInputChange} ),
-		 			EircodeError(
-		 				{'parse-result':parseResult} )
-		 		),
+	 			React.DOM.div({className: "eircode-input-section"}, 
+		 			React.DOM.div({className: "eircode-input-label"}, 
+		 				"Type an Eircode or click one of the examples below:", 
+		 				EircodeExamples({
+		 					examples: examples, 
+		 					onClick: this.onClickExample, 
+		 					inputValue: this.state.inputValue})
+		 			), 
+		 			EircodeInput({
+		 				value: this.state.inputValue, 
+		 				'parse-result': parseResult, 
+		 				onChange: this.onInputChange}), 
+		 			EircodeError({
+		 				'parse-result': parseResult})
+		 		), 
 
-	 			React.DOM.h3(null, "Parse Result"),
-	 			EircodeDisplay(
-	 				{'parse-result':parseResult} ),
-	 			React.DOM.p(null, "Here","'","s the raw output of ", React.DOM.code(null, "EircodeJS.parse('",this.state.inputValue,"').toJSON()")),
+	 			React.DOM.h3(null, "Parse Result"), 
+	 			EircodeDisplay({
+	 				'parse-result': parseResult}), 
+	 			React.DOM.p(null, "Here", "'", "s the raw output of ", React.DOM.code(null, "EircodeJS.parse('", this.state.inputValue, "').toJSON()")), 
 	 			React.DOM.pre(null, debug)
 	 		)
  		);
@@ -19342,25 +19354,25 @@ var EircodeDisplay = React.createClass({displayName: 'EircodeDisplay',
  			};
  			if (c === '') {
  				tds.push(
- 					React.DOM.td( {key:i, className:cx(classes)}, "—")
+ 					React.DOM.td({key: i, className: cx(classes)}, "—")
  				);
  			} else {
  				tds.push(
- 					React.DOM.td( {key:i, className:cx(classes)}, c)
+ 					React.DOM.td({key: i, className: cx(classes)}, c)
  				);
  			}
  		}
 
  		return (
- 			React.DOM.table( {className:"eircode-display"}, 
+ 			React.DOM.table({className: "eircode-display"}, 
  				React.DOM.tr(null, 
- 					React.DOM.th( {colSpan:"3"}, "Routing Key"),
- 					React.DOM.th(null, " "),
- 					React.DOM.th( {colSpan:"4"}, "Unique Identifier")
- 				),
+ 					React.DOM.th({colSpan: "3"}, "Routing Key"), 
+ 					React.DOM.th(null, " "), 
+ 					React.DOM.th({colSpan: "4"}, "Unique Identifier")
+ 				), 
  				React.DOM.tr(null, 
-	 				tds.slice(0, 3),
-	 				React.DOM.td( {className:"eircode-char-spacer"}),
+	 				tds.slice(0, 3), 
+	 				React.DOM.td({className: "eircode-char-spacer"}), 
 	 				tds.slice(3, 7)
  				)
  			)
@@ -19387,14 +19399,14 @@ var EircodeError = React.createClass({displayName: 'EircodeError',
 
 		if (error === null) {
 			return (
-				React.DOM.div( {className:"eircode-valid"}, 
+				React.DOM.div({className: "eircode-valid"}, 
 					"Eircode is valid"
 				)
 			);
 		}
 
 		return (
-			React.DOM.div( {className:"eircode-error"}, 
+			React.DOM.div({className: "eircode-error"}, 
 				error.message
 			)
 		);
@@ -19424,13 +19436,13 @@ var EircodeExamples = React.createClass({displayName: 'EircodeExamples',
 		for (var i = 0; i < examples.length; i++) {
 			var example = examples[i];
 			if (i > 0) {
-				elms.push(React.DOM.span( {key:'dot' + i}, ' ',"·",' '));
+				elms.push(React.DOM.span({key: 'dot' + i}, ' ', "·", ' '));
 			}
 			var classes = cx({
 				'example': true,
 				'active': (inputValue === example)
 			});
-			elms.push(React.DOM.span( {key:i, className:classes, onClick:this.props.onClick.bind(null, example)}, example));
+			elms.push(React.DOM.span({key: i, className: classes, onClick: this.props.onClick.bind(null, example)}, example));
 		}
 		return React.DOM.p(null, elms);
 	}
@@ -19470,22 +19482,22 @@ var EircodeInput = React.createClass({displayName: 'EircodeInput',
 			var c = (value.length > i) ? value[i] : 'N';
 			if (error && error.inputPos === i) {
 				annotations.push(
-					React.DOM.span( {key:i, className:"eircode-overlay-text-invalid"}, c)
+					React.DOM.span({key: i, className: "eircode-overlay-text-invalid"}, c)
 				);
 			} else {
 				annotations.push(
-					React.DOM.span( {key:i, className:"eircode-overlay-text-valid"}, c)
+					React.DOM.span({key: i, className: "eircode-overlay-text-valid"}, c)
 				);
 			}
 		}
 
 		return (
-			React.DOM.div( {className:"eircode-input"}, 
-				React.DOM.div( {className:"eircode-input-overlay"}, 
+			React.DOM.div({className: "eircode-input"}, 
+				React.DOM.div({className: "eircode-input-overlay"}, 
 					annotations
-				),
-				React.DOM.div( {className:"eircode-input-underlay"}, 
-					React.DOM.input( {ref:"input", value:value, onChange:onChange} )
+				), 
+				React.DOM.div({className: "eircode-input-underlay"}, 
+					React.DOM.input({ref: "input", value: value, onChange: onChange})
 				)
 			)
 		);
@@ -19506,7 +19518,7 @@ function EircodeJSDemo() {
 
 EircodeJSDemo.init = function (element, initialValue) {
 	React.renderComponent(
-		App( {appName:"EircodeJS", initialValue:initialValue} ),
+		App({appName: "EircodeJS", initialValue: initialValue}),
 		element
 	);
 };

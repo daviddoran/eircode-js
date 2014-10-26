@@ -30,8 +30,8 @@ var App = React.createClass({
 		var parseResult = EircodeJS.parse(this.state.inputValue);
 		var debug = JSON.stringify(parseResult.toJSON(), null, '  ');
 		var examples = [
-			'A65 R2GF',
-			'D6W U234',
+			'A65 F4E2',
+			'D6W V234',
 			'01D-5555',
 			'D6B-RTA2',
 			'A65-1234',
